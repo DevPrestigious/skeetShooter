@@ -32,7 +32,7 @@ Game :: Game(Point tl, Point br)
    score = 0;
 
    // TODO: Set your bird pointer to a good initial value (e.g., NULL)
-
+   bird = NULL;
 }
 
 /****************************************
