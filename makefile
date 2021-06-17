@@ -1,11 +1,16 @@
 ###############################################################
 # Program:
 #     Milestone 08, Skeet
-#     Brother {Burton, Falin, Ercanbrack, Comeau}, CS165
+#     Brother Alvey, CS165
 # Author:
-#     your name here
+#     Alexander Dohms
 # Summary:
-#     Put your summary code here... 
+#     This is a classic game that you can shoot and destroy clay pigeons. 
+#	  The purpose of this game is to help me understand and learn how to
+#	  implement class and class inheritance. I will also be using 
+#	  a fun tool called virtual functions which basically help me
+#	  to use the same functions with different values in other 
+#	  classes.
 # Above and Beyond
 #     When you submit your final project (not for milestones),
 #     list anything here that you did to go above and beyond
@@ -52,7 +57,14 @@ rifle.o: rifle.h point.h uiDraw.h rifle.cpp
 #
 # Then, don't forget to add them to the dependecy list for a.out above.
 #######################################################################
+bird.o: bird.cpp bird.h
+	g++ -c bird.cpp
 
+bullet.o: bullet.cpp bullet.h
+	g++ -c bullet.cpp
+
+velocity.o: velocity.cpp velocity.cpp
+	g++ -c velocity.cpp
 
 ###############################################################
 # General rules
