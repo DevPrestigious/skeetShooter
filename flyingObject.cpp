@@ -9,6 +9,6 @@
 
 void FlyingObject::advance()
 {
-      point.addX(velocity.getDx());
-      point.addY(velocity.getDy());
+      point.addX(velocity.getDx()+10);
+      point.addY(velocity.getDy()+10);
 }

@@ -8,16 +8,23 @@
 #ifndef bullet_h
 #define bullet_h
 #include "flyingObject.h"
+#include "rifle.h"
 class Bullet : public FlyingObject
 {
-private:
-   
+protected:
    
 public:
-   //finish draw functions using uiRectangle and circle., and advance.
-   void draw()
+   Bullet()
    {
-   };
+      
+      point = Point();
+      velocity = Velocity();
+      isAlive();
+      
+   }
+   
+   //finish draw functions using uiRectangle and circle., and advance.
+   void draw();
    
    Point getPoint()
    {
@@ -51,14 +58,12 @@ public:
    
    void fire(Point point, float angle) {};
    
-   Bullet()
-   {
-      
-      point = Point();
-      velocity = Velocity();
-      
-   }
+  
    
+   void advance()
+   {
+      FlyingObject::advance();
+   }
    
    
 };

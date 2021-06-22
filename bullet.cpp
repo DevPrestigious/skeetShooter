@@ -6,3 +6,9 @@
 //
 
 #include "bullet.h"
+
+
+void Bullet::draw()
+{
+   drawDot(Bullet::getPoint());
+}

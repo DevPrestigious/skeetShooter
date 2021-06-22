@@ -42,6 +42,11 @@ Game :: ~Game()
 {
    // TODO: Check to see if there is currently a bird allocated
    //       and if so, delete it.
+   if (bird)
+   {
+      delete bird;
+      bird = NULL;
+   }
 
 }
 
@@ -109,7 +114,6 @@ void Game :: advanceBird()
       {
          // move it forward
          bird->advance();
-         
          // check if the bird has gone off the screen
          if (!isOnScreen(bird->getPoint()))
          {
@@ -127,12 +131,26 @@ void Game :: advanceBird()
  **************************************************************************/
 Bird* Game :: createBird()
 {
-   Bird* newBird = NULL;
-
+   
+   
    // TODO: Fill this in
-   
-   
-   return newBird;
+   int randomNum = random(1, 4);
+   std::cerr << "Your number is: " << randomNum << std::endl;
+   Bird* newBird = NULL;
+   switch (randomNum)
+   {
+      case 1:
+         newBird = new Bird();
+         return newBird;
+      case 2:
+         newBird = new ToughBird();
+         return newBird;
+      case 3:
+         newBird = new SacredBird();
+         return newBird;
+      
+   }
+   return 0;
 }
 
 /**************************************************************************
@@ -163,7 +181,7 @@ void Game :: handleCollisions()
          // check if the bird is at this point (in case it was hit)
          if (bird != NULL && bird->isAlive())
          {
-            // BTW, this logic could be more sophisiticated, but this will
+            // BTW, this logic could be more , but this will
             // get the job done for now...
             if (fabs(bullets[i].getPoint().getX() - bird->getPoint().getX()) < CLOSE_ENOUGH
                 && fabs(bullets[i].getPoint().getY() - bird->getPoint().getY()) < CLOSE_ENOUGH)
@@ -195,7 +213,8 @@ void Game :: cleanUpZombies()
       // the bird is dead, but the memory is not freed up yet
       
       // TODO: Clean up the memory used by the bird
-   
+      delete bird;
+      bird = NULL;
    
    }
    
@@ -247,6 +266,7 @@ void Game :: handleInput(const Interface & ui)
       Bullet newBullet;
       newBullet.fire(rifle.getPoint(), rifle.getAngle());
       
+      
       bullets.push_back(newBullet);
    }
 }
@@ -258,10 +278,14 @@ void Game :: handleInput(const Interface & ui)
 void Game :: draw(const Interface & ui)
 {
    // draw the bird
-
    // TODO: Check if you have a valid bird and if it's alive
    // then call it's draw method
+   if (bird != NULL && bird->isAlive())
+   {
+  
+      bird->draw();
    
+   };
   
 
    // draw the rifle
