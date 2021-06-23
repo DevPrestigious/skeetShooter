@@ -37,6 +37,7 @@ private:
    
 public:
    Rifle(const Point & point) : point(point) { angle = ANGLE_START; }
+   Rifle(){}
    
    /****************
     * Basic Getters

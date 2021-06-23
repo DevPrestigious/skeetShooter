@@ -20,9 +20,9 @@ public:
    ToughBird()
    {
       life = 3;
-      point = Point(0,0);
+      point = Point(-204,random(-200,200));
       isAlive();
-      velocity = Velocity(1,1);
+      velocity = Velocity(random(2,4),random(1,3));
       points = 1;
    }
    

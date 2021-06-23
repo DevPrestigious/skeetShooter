@@ -9,15 +9,22 @@
 #define bullet_h
 #include "flyingObject.h"
 #include "rifle.h"
+#include <cmath> // used for sin, cos, and M_PI
+
+
+
 class Bullet : public FlyingObject
 {
 protected:
    
+
+
+
 public:
    Bullet()
    {
       
-      point = Point();
+      point = Point(200,-200);
       velocity = Velocity();
       isAlive();
       
@@ -25,6 +32,9 @@ public:
    
    //finish draw functions using uiRectangle and circle., and advance.
    void draw();
+   
+   
+   
    
    Point getPoint()
    {

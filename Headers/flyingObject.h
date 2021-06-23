@@ -11,6 +11,7 @@
 #include "point.h"
 #include "velocity.h"
 #include "uiDraw.h"
+#include "rifle.h"
 
 
 class FlyingObject

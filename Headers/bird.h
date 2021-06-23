@@ -21,9 +21,9 @@ public:
    Bird()
    {
       life = 1;
-      point = Point(0,0);
+      point = Point(-200,random(-200, 200));
       isAlive();
-      velocity = Velocity(1,1);
+      velocity = Velocity(random(3, 6),random(1, 4));
       points = -1;
    }
    
