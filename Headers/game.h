@@ -69,17 +69,21 @@ private:
    Point topLeft;
    Point bottomRight;
    
+   
+
    // This variable will adjust how many birds you want to play with.
    int birdAmount = 10;
    // Variable to allow highscore to run.
-   float highscore;
+   int highscore = 0;
    int score;
    // Declares the highScoreHandler
    void highScoreHandler();
+
+   void displayInstructions();
    
    Rifle rifle;
    std::vector<Bullet> bullets;
-   
+   int wastedBullets = 0;
    // TODO: declare your bird here (e.g., "Bird * bird;")
    Bird * bird;
 

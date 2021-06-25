@@ -16,7 +16,8 @@
 #include "uiInteract.h"
 #include "point.h"
 #include "string.h"
-
+#include <exception>
+#include <memory>
 #include <vector>
 using namespace std;
 
@@ -31,9 +32,13 @@ Game :: Game(Point tl, Point br)
 {
    // Set up the initial conditions of the game
    score = 0;
-
+   //Had this here just to pull the highscore of the game, at creation.
+   highScoreHandler();
    // TODO: Set your bird pointer to a good initial value (e.g., NULL)
    bird = NULL;
+   displayInstructions();
+   
+
 }
 
 /****************************************
@@ -137,6 +142,7 @@ Bird* Game :: createBird()
    challenging, and also to make the game not feel like an endless
    loop*/
    // TODO: Fill this in
+   
    int randomNum = random(1, 4);
    Bird* newBird = NULL;
    switch (randomNum)
@@ -205,7 +211,14 @@ void Game :: handleCollisions()
                // hit the bird
                int points = bird->hit();
                score += points;
-               highScoreHandler();
+               //Needed this here anytime score gets updated
+               if (wastedBullets == 0)
+               {
+                  highScoreHandler();
+               }
+               else
+               {
+               }
                // the bullet is dead as well
                bullets[i].kill();
             }
@@ -229,7 +242,14 @@ void Game :: cleanUpZombies()
       // TODO: Clean up the memory used by the bird
       delete bird;
       bird = NULL;
-   
+      //Sometimes needed this because points are added later
+      if (wastedBullets == 0)
+      {
+         highScoreHandler();
+      }
+      else
+      {
+      }
    }
    
    // Look for dead bullets
@@ -254,7 +274,7 @@ void Game :: cleanUpZombies()
          bulletIt++; // advance
       }
    }
-   highScoreHandler();
+   
 }
 
 /***************************************
@@ -277,10 +297,37 @@ void Game :: handleInput(const Interface & ui)
    // Check for "Spacebar
    if (ui.isSpace())
    {
+      if (birdAmount <= 0 && bird == NULL)
+      {
+         if (wastedBullets == 0)
+         {
+            std::cout << std::endl;
+            ++wastedBullets;
+         }
+         else if (wastedBullets < 5)
+         {
+            std::cout << "No more birds, game over, please stop pushing my spacebar, I'm sensitive." << std::endl;
+            ++wastedBullets;
+         }
+         
+         else if (wastedBullets <= 10)
+         {
+            std::cout << "No seriously, the game is over. Quit pushing my buttons!" << std::endl;
+            ++wastedBullets;
+         }
+         else if (wastedBullets < 15)
+         {
+            std::cout << std::endl;
+            std::cout << "Wow you really want to play this game?" << std::endl;
+            std::cout << "Fine I submit, you insolent peasant" << std::endl;
+            std::cout << "go, go kill all the birds you wish," << std::endl;
+            std::cout << "but this won't count towards highscore, sucka!" << std::endl;
+            ++wastedBullets;
+            birdAmount = 9001;
+         }
+      }
       Bullet newBullet;
       newBullet.fire(rifle.getPoint(), rifle.getAngle());
-      
-      
       bullets.push_back(newBullet);
    }
 }
@@ -311,8 +358,8 @@ void Game :: highScoreHandler()
    //Update highscore file if (score > highscore)
    else
    {
-      if (birdAmount > 0) {
          fin >> highscore;
+      if (birdAmount >= 0) {
          if (score > highscore)
          {
             //Open a new file with the name of the file the user declared.
@@ -324,6 +371,24 @@ void Game :: highScoreHandler()
    }
    fin.close();
    return;
+}
+
+void Game :: displayInstructions()
+{
+   std::cout << "Welcome to the most prestigious game of all the lands,\n";
+   std::cout << "lords and queens cross the empire to  play such debachery!\n";
+   std::cout << std::endl;
+   std::cout << std::endl;
+   std::cout << "The instructions are simple; kill the birds to get points.\n";
+   std::cout << "But watch out for the sacred bird, marked ironically as a spinning\n";
+   std::cout << "satanic symbol!\n";
+   std::cout << "Can you try to beat the high score listed in the top right?\n";
+   std::cout << "Pay attention your bird count in the top middle, there are only so many birds we'll\n";
+   std::cout << "allow killed on the Kings land!";
+   std::cout << std::endl;
+   std::cout << std::endl;
+   std::cout << system("pause");
+   std::cout << std::endl << "MAKE SURE TO CLICK INTO THE GAME WINDOW!\n";
 }
 
 
@@ -346,7 +411,6 @@ void Game :: draw(const Interface & ui)
 
    // draw the rifle
    rifle.draw();
-   
    // draw the bullets, if they are alive
    for (int i = 0; i < bullets.size(); i++)
    {
@@ -374,6 +438,7 @@ void Game :: draw(const Interface & ui)
    BirdsRemaining.setY(194);
    drawNumber(BirdsRemaining, birdAmount);
    
-
+   
 }
+
 

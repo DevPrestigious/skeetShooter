@@ -12,9 +12,8 @@
 #	  to use the same functions with different values in other 
 #	  classes.
 # Above and Beyond
-#     When you submit your final project (not for milestones),
-#     list anything here that you did to go above and beyond
-#     the base requirements for your project.
+#     I created a way to handle a highscore and limit the amount of
+#     birds that were created
 ###############################################################
 
 
