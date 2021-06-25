@@ -21,16 +21,14 @@
 #include "point.h"
 #include "velocity.h"
 #include "rifle.h"
+#include <iostream>
+#include <fstream>
 // TODO: include your bullet and bird classes
 #include "bird.h"
 #include "bullet.h"
-#include <iostream>
-#include <fstream>
-
 
 
 #define CLOSE_ENOUGH 15
-
 
 /*****************************************
  * GAME
@@ -71,13 +69,12 @@ private:
    Point topLeft;
    Point bottomRight;
    
-   
+   // This variable will adjust how many birds you want to play with.
    int birdAmount = 10;
-   
-
+   // Variable to allow highscore to run.
    float highscore;
    int score;
-   
+   // Declares the highScoreHandler
    void highScoreHandler();
    
    Rifle rifle;

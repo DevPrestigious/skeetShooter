@@ -17,7 +17,8 @@ protected:
    int points;
    int life;
 public:
-   
+   // Constructor for bird, -1 because it helps handle the semi-poorly written but functioning
+   // score function.
    Bird()
    {
       life = 1;

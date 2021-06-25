@@ -24,22 +24,7 @@ protected:
    int startY = random(-200,200);
 public:
    
-   //Function for other birds virtical velocity
-   int velY(int startY)
-   {
-       if (this->startY * -1 > 0)
-           return startY = random(-4, 1);
-       else
-           return startY = random(0, 5);
-   }
-   //Function for toughbirds vertical velocity
-   int tVelY(int startY)
-   {
-       if (this->startY * -1 > 0)
-           return startY = random(-3, 1);
-       else
-           return startY = random(0, 4);
-   }
+   
    
    FlyingObject() { alive = true; }
    virtual ~FlyingObject() { }
@@ -58,6 +43,24 @@ public:
    virtual void advance();
    virtual void draw() = 0;
 
+   //Function for other birds virtical velocity
+   int velY(int startY)
+   {
+      // If startY is not negative, then descend, otherwise rise
+       if (this->startY * -1 > 0)
+           return startY = random(-4, 1);
+       else
+           return startY = random(0, 5);
+   }
+   //Function for toughbirds vertical velocity
+   int tVelY(int startY)
+   {
+      // If startY is not negative, then descend, otherwise rise
+       if (this->startY * -1 > 0)
+           return startY = random(-3, 1);
+       else
+           return startY = random(0, 4);
+   }
 
 };
 

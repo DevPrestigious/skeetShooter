@@ -16,7 +16,7 @@ protected:
    
 public:
    
-   
+   // Constructor for ToughBird
    ToughBird()
    {
       life = 3;
@@ -26,6 +26,8 @@ public:
       points = 1;
    }
    
+   // Overrides draws function, creates a beautiful ToughBird on the
+   // screen.
    void draw() override
    {
       drawToughBird(getPoint(), 15, life);

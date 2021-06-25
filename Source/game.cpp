@@ -132,11 +132,12 @@ void Game :: advanceBird()
  **************************************************************************/
 Bird* Game :: createBird()
 {
-   
-   
+   /*Create bird is special here because it will only create a
+   total of 10 Tough or Angry birds, making the highscore more
+   challenging, and also to make the game not feel like an endless
+   loop*/
    // TODO: Fill this in
    int randomNum = random(1, 4);
-   std::cerr << "Your number is: " << randomNum << std::endl;
    Bird* newBird = NULL;
    switch (randomNum)
    {
@@ -159,6 +160,7 @@ Bird* Game :: createBird()
          if (birdAmount < 1) {
             return 0;
          }
+         //Sacred bird does not affect birdAmount
          return newBird;
       
    }
@@ -360,13 +362,13 @@ void Game :: draw(const Interface & ui)
    scoreLocation.setY(topLeft.getY() - 5);
    drawNumber(scoreLocation, score);
    
-   //Puts the old or current highscore on the screen
+   // Puts the old or current highscore on the screen
    Point highScoreLocation;
    highScoreLocation.setX(175);
    highScoreLocation.setY(194);
    drawNumber(highScoreLocation, highscore);
    
-   //You will get
+   // Puts the amount of remaining birds on the top middle
    Point BirdsRemaining;
    BirdsRemaining.setX(-5);
    BirdsRemaining.setY(194);
