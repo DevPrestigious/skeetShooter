@@ -13,7 +13,8 @@
 #	  classes.
 # Above and Beyond
 #     I created a way to handle a highscore and limit the amount of
-#     birds that were created
+#     birds that were created. I also added a terribly written story,
+#     and a fun easter egg in the end, hope you enjoy!
 ###############################################################
 
 
@@ -56,14 +57,23 @@ rifle.o: rifle.h point.h uiDraw.h rifle.cpp
 #
 # Then, don't forget to add them to the dependecy list for a.out above.
 #######################################################################
+flyingObject.o: flyingObject.cpp flyingObject.h
+	g++ -c flyingObject.cpp
+
 bird.o: bird.cpp bird.h
 	g++ -c bird.cpp
 
-bullet.o: bullet.cpp bullet.h
+bullet.o: bullet.cpp bullet.h flyingObject.cpp flyingObject.h
 	g++ -c bullet.cpp
 
 velocity.o: velocity.cpp velocity.cpp
 	g++ -c velocity.cpp
+
+sacredBird.o: sacredBird.cpp sacredBird.handle bird.cpp bird.h
+	g++ -c sacredBird.cpp
+
+toughBird.o: toughBird.cpp toughBird.h bird.cpp bird.h
+	g++ -c toughBird.cpp
 
 ###############################################################
 # General rules
