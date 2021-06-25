@@ -1,6 +1,7 @@
 # skeetShooter
 
 A game nobody asked for, but was made anyways.
+
 **Install Instructions:**
 In Releases click on "A really bad game".
 
