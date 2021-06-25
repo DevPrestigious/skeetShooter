@@ -376,7 +376,7 @@ void Game :: highScoreHandler()
 void Game :: displayInstructions()
 {
    std::cout << "Welcome to the most prestigious game of all the lands,\n";
-   std::cout << "lords and queens cross the empire to  play such debachery!\n";
+   std::cout << "kings and queens cross the empire to play such debachery!\n";
    std::cout << std::endl;
    std::cout << std::endl;
    std::cout << "The instructions are simple; kill the birds to get points.\n";
@@ -438,6 +438,33 @@ void Game :: draw(const Interface & ui)
    BirdsRemaining.setY(194);
    drawNumber(BirdsRemaining, birdAmount);
    
+   Point textBirds;
+   textBirds.setX(-105);
+   textBirds.setY(186);
+   drawText(textBirds,"Birds Remaining:");
+   
+   Point textScore;
+   // Adjust the headers if there is a longer number to draw.
+   if (score > 9 || score < 0)
+   {
+      textScore.setX(topLeft.getX() + 35);
+      textScore.setY(topLeft.getY() - 14);
+   }
+   else
+   {
+      textScore.setX(topLeft.getX() + 20);
+      textScore.setY(topLeft.getY() - 14);
+   }
+
+   drawText(textScore,":Score");
+   
+   Point textHighScore;
+   textHighScore.setX(100);
+   textHighScore.setY(186);
+   drawText(textHighScore,"High Score:");
+
+
+
    
 }
 

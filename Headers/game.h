@@ -64,12 +64,14 @@ public:
     *********************************************/
    void draw(const Interface & ui);
    
+
+
 private:
    // The coordinates of the screen
    Point topLeft;
    Point bottomRight;
    
-   
+   std::string textBirds{ "Birds remaining : " };
 
    // This variable will adjust how many birds you want to play with.
    int birdAmount = 10;
