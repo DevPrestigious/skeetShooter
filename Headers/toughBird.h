@@ -22,7 +22,7 @@ public:
       life = 3;
       point = Point(-204,random(-200,200));
       isAlive();
-      velocity = Velocity(random(2,4),random(1,3));
+      velocity = Velocity(random(2,5),tVelY(startY));
       points = 1;
    }
    

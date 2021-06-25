@@ -19,9 +19,9 @@ public:
    
    SacredBird()
    {
-      point = Point(-200,random(-200,200));
+      point = Point(-200,startY);
       isAlive();
-      velocity = Velocity(1,1);
+      velocity = Velocity(random(3,7),velY(startY));
       points = -12;
    }
    

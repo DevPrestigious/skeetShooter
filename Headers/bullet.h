@@ -66,9 +66,8 @@ public:
       FlyingObject::kill();
    };
    
-   void fire(Point point, float angle) {};
-   
-  
+   void fire(Point point, float angle);
+
    
    void advance()
    {

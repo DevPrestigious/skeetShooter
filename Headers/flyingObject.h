@@ -20,8 +20,27 @@ protected:
    Point point;
    Velocity velocity;
    bool alive;
-
+   float angle;
+   int startY = random(-200,200);
 public:
+   
+   //Function for other birds virtical velocity
+   int velY(int startY)
+   {
+       if (this->startY * -1 > 0)
+           return startY = random(-4, 1);
+       else
+           return startY = random(0, 5);
+   }
+   //Function for toughbirds vertical velocity
+   int tVelY(int startY)
+   {
+       if (this->startY * -1 > 0)
+           return startY = random(-3, 1);
+       else
+           return startY = random(0, 4);
+   }
+   
    FlyingObject() { alive = true; }
    virtual ~FlyingObject() { }
 

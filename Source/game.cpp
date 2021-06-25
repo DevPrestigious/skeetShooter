@@ -15,6 +15,7 @@
 #include "uiDraw.h"
 #include "uiInteract.h"
 #include "point.h"
+#include "string.h"
 
 #include <vector>
 using namespace std;
@@ -141,12 +142,23 @@ Bird* Game :: createBird()
    {
       case 1:
          newBird = new Bird();
+         if (birdAmount < 1) {
+            return 0;
+         }
+         --birdAmount;
          return newBird;
       case 2:
          newBird = new ToughBird();
+         if (birdAmount < 1) {
+            return 0;
+         }
+         --birdAmount;
          return newBird;
       case 3:
          newBird = new SacredBird();
+         if (birdAmount < 1) {
+            return 0;
+         }
          return newBird;
       
    }
@@ -191,7 +203,7 @@ void Game :: handleCollisions()
                // hit the bird
                int points = bird->hit();
                score += points;
-               
+               highScoreHandler();
                // the bullet is dead as well
                bullets[i].kill();
             }
@@ -240,7 +252,7 @@ void Game :: cleanUpZombies()
          bulletIt++; // advance
       }
    }
-   
+   highScoreHandler();
 }
 
 /***************************************
@@ -270,6 +282,48 @@ void Game :: handleInput(const Interface & ui)
       bullets.push_back(newBullet);
    }
 }
+
+void Game :: highScoreHandler()
+{
+   std::string highscoreFileName = "highscore";
+   /*Lets check if the file name exists if it doesn't then create
+    a new highscore file and save the current score to it*/
+   ifstream fin(highscoreFileName);
+   //Declare fout, used to run function ofstream.
+   ofstream fout;
+      if (fin.fail())
+   {
+      //Create a new file with the name of the file the user declared.
+      if (birdAmount >= 0) {
+         fout.open(highscoreFileName);
+         {
+            //Write to the file
+            fout << score;
+            //Close the file we were writing to.
+            fout.close();
+            return;
+         }
+      }
+      
+   }
+   //Update highscore file if (score > highscore)
+   else
+   {
+      if (birdAmount > 0) {
+         fin >> highscore;
+         if (score > highscore)
+         {
+            //Open a new file with the name of the file the user declared.
+            fout.open(highscoreFileName);
+            fout << score;
+         }
+      }
+      
+   }
+   fin.close();
+   return;
+}
+
 
 /*********************************************
  * GAME :: DRAW
@@ -304,8 +358,20 @@ void Game :: draw(const Interface & ui)
    Point scoreLocation;
    scoreLocation.setX(topLeft.getX() + 5);
    scoreLocation.setY(topLeft.getY() - 5);
-   
    drawNumber(scoreLocation, score);
+   
+   //Puts the old or current highscore on the screen
+   Point highScoreLocation;
+   highScoreLocation.setX(175);
+   highScoreLocation.setY(194);
+   drawNumber(highScoreLocation, highscore);
+   
+   //You will get
+   Point BirdsRemaining;
+   BirdsRemaining.setX(-5);
+   BirdsRemaining.setY(194);
+   drawNumber(BirdsRemaining, birdAmount);
+   
 
 }
 

@@ -24,7 +24,8 @@
 // TODO: include your bullet and bird classes
 #include "bird.h"
 #include "bullet.h"
-
+#include <iostream>
+#include <fstream>
 
 
 
@@ -70,7 +71,14 @@ private:
    Point topLeft;
    Point bottomRight;
    
+   
+   int birdAmount = 10;
+   
+
+   float highscore;
    int score;
+   
+   void highScoreHandler();
    
    Rifle rifle;
    std::vector<Bullet> bullets;
@@ -88,6 +96,9 @@ private:
    
    void handleCollisions();
    void cleanUpZombies();
+   
+   
+   
 };
 
 #endif /* GAME_H */
