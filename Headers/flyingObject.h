@@ -48,18 +48,18 @@ public:
    {
       // If startY is not negative, then descend, otherwise rise
        if (this->startY * -1 > 0)
-           return startY = random(-4, 1);
-       else
            return startY = random(0, 5);
+       else
+           return startY = random(-4, 1);
    }
    //Function for toughbirds vertical velocity
    int tVelY(int startY)
    {
-      // If startY is not negative, then descend, otherwise rise
+      // If startY is not negative, then ascend, otherwise descend
        if (this->startY * -1 > 0)
-           return startY = random(-3, 1);
-       else
            return startY = random(0, 4);
+       else
+           return startY = random(-3, 1);
    }
 
 };
