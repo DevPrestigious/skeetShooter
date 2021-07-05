@@ -1,6 +1,6 @@
 ###############################################################
 # Program:
-#     Milestone 08, Skeet
+#     Project 09, Skeet
 #     Brother Alvey, CS165
 # Author:
 #     Alexander Dohms
@@ -14,7 +14,7 @@
 # Above and Beyond
 #     I created a way to handle a highscore and limit the amount of
 #     birds that were created. I also added a terribly written story,
-#     and a fun easter egg in the end, hope you enjoy!
+#     and an easter egg in the end, hope you enjoy!
 ###############################################################
 
 
